@@ -1,6 +1,7 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
+import router from "next/router";
 import { useEffect } from "react";
 import styles from "../../styles/Home.module.css";
 import NftList from "../component/nft/NftList";
@@ -10,19 +11,6 @@ import { mintNftsUsingThirdWeb } from "../services/signature-drop.service";
 import Registration from "./registration";
 
 const Home: NextPage = () => {
-  const metadatas = [
-    {
-      name: "Cool NFT",
-      description: "This is a cool NFT",
-      image: "https://www.google.com", // This can be an image url or file
-    },
-  ];
-
-  useEffect(() => {
-    console.log("hello there");
-    // mintNft(metadatas, "");
-  }, []);
-
   return (
     <div className={styles.container}>
       <Head>
@@ -33,12 +21,19 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>
-        <div className={styles.details}>
-          <button className={styles.button}>Create NFT</button>
-        </div>
+      <div className={styles.mainHeader}>
         <ConnectButton />
+
+        <div className={styles.details}>
+          <button
+            className={styles.button}
+            onClick={() => router.push("/registration")}
+          >
+            Create NFT
+          </button>
+        </div>
+      </div>
+      <main className={styles.main}>
         <NftList />
         {/* <Registration /> */}
       </main>

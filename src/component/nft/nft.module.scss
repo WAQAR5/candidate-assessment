@@ -1,11 +1,11 @@
 .wrapper {
-  @apply w-[100%] flex gap-8 flex-wrap  justify-center text-yellow-400;
+  @apply w-[100%] flex gap-8 flex-wrap  justify-center  mt-9;
   .container {
     @apply w-[300px] max-w-sm bg-white rounded-lg shadow-md;
     img {
       @apply max-w-[300px];
     }
-    .desc {
+    .description {
       @apply flex justify-between p-5;
       .title {
         @apply text-sm;
@@ -13,6 +13,10 @@
       .price {
         @apply text-sm;
       }
+    }
+    .descText {
+      text-align: center;
+      font-size: small;
     }
     .details {
       @apply w-full flex justify-end my-3 -mx-1;

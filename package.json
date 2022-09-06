@@ -12,6 +12,7 @@
     "@rainbow-me/rainbowkit": "^0.5.1",
     "@thirdweb-dev/react": "^2.9.6",
     "@thirdweb-dev/sdk": "^2.4.8",
+    "axios": "^0.27.2",
     "ethers": "^5.7.0",
     "formik": "^2.2.9",
     "ipfs-core": "^0.15.4",
