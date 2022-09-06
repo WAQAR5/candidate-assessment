@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 // import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./registraion.module.scss";
-import { SignUpSchema } from "./RegistraionSchema";
-import Router from "next/router";
-import { store } from "../../services/ipfs.service";
-import { Head } from "next/document";
 import { useFormik } from "formik";
 import { mintNft } from "../../services/contract.service";
+import { store } from "../../services/ipfs.service";
+import styles from "./registration.module.scss";
+import { useAccount } from "wagmi";
 const RegistrationForm = () => {
   const [nftImage, setNftImage] = useState("");
   const [nftMint, setNftMint] = useState("");
 
+  const account = useAccount();
+  console.log("account----------------", account);
+
+  useEffect(() => {
+    console.log("wertyuioiutrertyiopoiuytrewer");
+  }, []);
   const handleGetImage = async (e: any) => {
+    debugger;
     console.log("eeeeeeeeeeeeeee", e.target.files[0]);
+
     let name = e.target.files[0].name;
     let file = e.target.files[0];
     const response = await store(name, file);
@@ -45,17 +49,14 @@ const RegistrationForm = () => {
 
         const response = await store(values.name, JSON.stringify(data));
         let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
-        const mint = await mintNft(
-          "0x76Cd0dFeF3cC86A1527FdbC540420bfeB8ff5de9",
-          url
-        );
+        const mint = await mintNft(account.address, url);
         console.log(mint, "data-------------");
 
         return;
         // await Register(data);
-        toast.success("You Signed Up Successfuly");
-        Router.push("/");
-        onSubmitProps.resetForm();
+        // toast.success("You Signed Up Successfuly");
+        // Router.push("/");
+        // onSubmitProps.resetForm();
       } catch (error) {
         // toast.error(error.response.data.message, { position: "top-center" });
       }

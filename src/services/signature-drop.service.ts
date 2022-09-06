@@ -1,9 +1,16 @@
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { ethers } from "ethers";
 import config from "../utils/config";
+import { ToastContainer, toast } from "react-toastify";
 
 const getContractInstance = () => {
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const windowClient: any = window.ethereum;
+
+  if (!windowClient) {
+    toast.error("Wallet not connected. Please connect wallet to continue.");
+  }
+
+  const provider = new ethers.providers.Web3Provider(windowClient);
   const signer = provider.getSigner();
 
   const sdk = new ThirdwebSDK(signer);
@@ -26,7 +33,7 @@ const mintNftsUsingThirdWeb = async (
 
     return results;
   } catch (err) {
-    console.log("🚀 ~ file: signature-drop.service.ts ~ line 40 ~ err", err);
+    toast.error("something went wrong. Please try again");
   }
 };
 
