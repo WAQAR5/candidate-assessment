@@ -5,7 +5,8 @@ import config from "../utils/config";
 import axios from "axios";
 
 const getNewWeb3 = (isMainnnet = false) => {
-  return new Web3(window.ethereum);
+  const windowClient: any = window.ethereum;
+  return new Web3(windowClient);
 };
 
 const contractInstance = async () => {
