@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import Web3 from "web3";
 import { erc721ABI } from "../data/erc721.abi";
 import config from "../utils/config";
@@ -23,10 +24,7 @@ const mintNft = async (address: string, uri: string) => {
     });
     return response;
   } catch (err) {
-    console.log(
-      "🚀 ~ file: contract.service.ts ~ line 30 ~ mintNft ~ err",
-      err
-    );
+    toast.error("something went wrong while minting. Please try again!");
   }
 };
 
@@ -35,7 +33,7 @@ const getUserNfts = async (address: string) => {
   const numUserNfts = await contract.methods.balanceOf(address).call();
   let nfts = [];
   for (let i = 0; i < numUserNfts; i++) {
-    let nft = await contract.methods.tokenOfOwnerByIndex(i).call();
+    let nft = await contract.methods.tokenOfOwnerByIndex(address, i).call();
     nfts.push(nft);
   }
   return nfts;
@@ -43,7 +41,7 @@ const getUserNfts = async (address: string) => {
 
 const getAllNfts = async (address: string) => {
   const contract = await contractInstance();
-  const numUserNfts = await contract.methods.totalSupply(address).call();
+  const numUserNfts = await contract.methods.totalSupply().call();
   let nfts = [];
   for (let i = 0; i < numUserNfts; i++) {
     let nft = await contract.methods.tokenByIndex(i).call();

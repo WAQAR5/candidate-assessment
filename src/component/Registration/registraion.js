@@ -1,9 +1,9 @@
 import { useFormik } from "formik";
 import Head from "next/head";
+import Router from "next/router";
 import { toast } from "react-toastify";
 import styles from "./registraion.module.scss";
 import { SignUpSchema } from "./RegistraionSchema";
-import Router from "next/router";
 
 const RegistrationForm = () => {
   const SignUpFormik = useFormik({
@@ -55,11 +55,6 @@ const RegistrationForm = () => {
                     placeholder="Name *"
                     {...SignUpFormik.getFieldProps("name")}
                   />
-                  {/* {SignUpFormik.touched.name && SignUpFormik.errors.name ? (
-                    <div className={styles.error}>
-                      {SignUpFormik.errors.name}
-                    </div>
-                  ) : null} */}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -67,11 +62,6 @@ const RegistrationForm = () => {
                     placeholder="Description *"
                     {...SignUpFormik.getFieldProps("description")}
                   />
-                  {/* {SignUpFormik.touched.email && SignUpFormik.errors.email ? (
-                    <div className={styles.error}>
-                      {SignUpFormik.errors.email}
-                    </div>
-                  ) : null} */}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -79,12 +69,6 @@ const RegistrationForm = () => {
                     placeholder="Quantity *"
                     {...SignUpFormik.getFieldProps("quantity")}
                   />
-                  {/* {SignUpFormik.touched.password &&
-                  SignUpFormik.errors.password ? (
-                    <div className={styles.error}>
-                      {SignUpFormik.errors.password}
-                    </div>
-                  ) : null} */}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -92,12 +76,6 @@ const RegistrationForm = () => {
                     placeholder="Price"
                     {...SignUpFormik.getFieldProps("price")}
                   />
-                  {/* {SignUpFormik.touched.confirmpassword &&
-                  SignUpFormik.errors.confirmpassword ? (
-                    <div className={styles.error}>
-                      {SignUpFormik.errors.confirmpassword}
-                    </div>
-                  ) : null} */}
                 </div>
                 <div className={styles.inputdiv}>
                   <input type="file" />
@@ -107,43 +85,7 @@ const RegistrationForm = () => {
                   <button type="submit">Register</button>
                 </div>
               </form>
-
-              {/* <div className={styles.login}>
-                Already have an Account ? &nbsp;
-                <Link href="/">Login</Link>
-              </div> */}
-              {/* <div className={styles.socialicon}>
-                <div className={styles.google}>
-                  <Image src="/google.svg" width={25} height={20} alt="" />
-                  <span>Google Account</span>
-                </div>
-                <div className={styles.google}>
-                  <Image src="/facebook.svg" width={25} height={20} alt="" />
-                  <span>Facebook Account</span>
-                </div>
-              </div> */}
             </div>
-            {/* <div className={styles.right}>
-              <div className={styles.bgimage}>
-                <Image
-                  src="/Rectangle.svg"
-                  width={330}
-                  height={490}
-                  alt="Pic"
-                />
-              </div>
-              <div className={styles.profileman}>
-                <Image
-                  src="/profile-man.svg"
-                  width={200}
-                  height={200}
-                  alt="Pic"
-                />
-              </div>
-              <div className={styles.lampshade}>
-                <Image src="/lampshade.svg" width={90} height={100} alt="Pic" />
-              </div>
-            </div> */}
           </div>
         </div>
       </div>
