@@ -39,7 +39,7 @@ const getUserNfts = async (address: string) => {
   return nfts;
 };
 
-const getAllNfts = async (address: string) => {
+const getAllNfts = async () => {
   const contract = await contractInstance();
   const numUserNfts = await contract.methods.totalSupply().call();
   let nfts = [];

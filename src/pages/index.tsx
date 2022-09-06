@@ -3,7 +3,9 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useEffect } from "react";
 import styles from "../../styles/Home.module.css";
+import NftList from "../component/nft/NftList";
 import { mintNft } from "../services/contract.service";
+// import { mintNft } from "../services/contract.service";
 import { mintNftsUsingThirdWeb } from "../services/signature-drop.service";
 import Registration from "./registration";
 
@@ -18,7 +20,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     console.log("hello there");
-    // mintNft(metadatas);
+    // mintNft(metadatas, "");
   }, []);
 
   return (
@@ -34,8 +36,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <ConnectButton />
-
-        <Registration />
+        <NftList />
+        {/* <Registration /> */}
       </main>
     </div>
   );
