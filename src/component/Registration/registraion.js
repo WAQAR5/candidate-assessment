@@ -1,13 +1,10 @@
-import React from "react";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "./registraion.module.scss";
 import { useFormik } from "formik";
-import { SignUpSchema } from "./RegistraionSchema";
+import Head from "next/head";
 import { toast } from "react-toastify";
-// import { Register } from "../../services/auth.services";
+import styles from "./registraion.module.scss";
+import { SignUpSchema } from "./RegistraionSchema";
 import Router from "next/router";
+
 const RegistrationForm = () => {
   const SignUpFormik = useFormik({
     initialValues: {
@@ -35,6 +32,7 @@ const RegistrationForm = () => {
       }
     },
   });
+
   return (
     <>
       <Head>

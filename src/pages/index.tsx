@@ -18,7 +18,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     console.log("hello there");
-    mintNft(metadatas);
+    // mintNft(metadatas);
   }, []);
 
   return (

@@ -30,4 +30,26 @@ const mintNft = async (address: string, uri: string) => {
   }
 };
 
-export { getNewWeb3, contractInstance, mintNft };
+const getUserNfts = async (address: string) => {
+  const contract = await contractInstance();
+  const numUserNfts = await contract.methods.balanceOf(address).call();
+  let nfts = [];
+  for (let i = 0; i < numUserNfts; i++) {
+    let nft = await contract.methods.tokenOfOwnerByIndex(i).call();
+    nfts.push(nft);
+  }
+  return nfts;
+};
+
+const getAllNfts = async (address: string) => {
+  const contract = await contractInstance();
+  const numUserNfts = await contract.methods.totalSupply(address).call();
+  let nfts = [];
+  for (let i = 0; i < numUserNfts; i++) {
+    let nft = await contract.methods.tokenByIndex(i).call();
+    nfts.push(nft);
+  }
+  return nfts;
+};
+
+export { getNewWeb3, contractInstance, mintNft, getUserNfts, getAllNfts };
