@@ -7,8 +7,11 @@ import { SignUpSchema } from "./RegistraionSchema";
 import Router from "next/router";
 import { store } from "../../services/ipfs.service";
 import { Head } from "next/document";
+import { useFormik } from "formik";
+import { mintNft } from "../../services/contract.service";
 const RegistrationForm = () => {
   const [nftImage, setNftImage] = useState("");
+  const [nftMint, setNftMint] = useState("");
 
   const handleGetImage = async (e: any) => {
     console.log("eeeeeeeeeeeeeee", e.target.files[0]);
@@ -39,9 +42,15 @@ const RegistrationForm = () => {
           price: Number(values.price),
           image: nftImage,
         };
-        const response = await store(values.name, data);
 
-        console.log(response, "data-------------");
+        const response = await store(values.name, JSON.stringify(data));
+        let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
+        const mint = await mintNft(
+          "0x76Cd0dFeF3cC86A1527FdbC540420bfeB8ff5de9",
+          url
+        );
+        console.log(mint, "data-------------");
+
         return;
         // await Register(data);
         toast.success("You Signed Up Successfuly");

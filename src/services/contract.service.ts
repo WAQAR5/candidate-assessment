@@ -18,7 +18,7 @@ const contractInstance = async () => {
 const mintNft = async (address: string, uri: string) => {
   try {
     const contract = await contractInstance();
-    const response = await contract.methods.mintedTo(address, uri).send({
+    const response = await contract.methods.mintTo(address, uri).send({
       from: address,
     });
     return response;
