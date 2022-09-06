@@ -18,11 +18,6 @@ const Home: NextPage = () => {
     },
   ];
 
-  useEffect(() => {
-    console.log("hello there");
-    // mintNft(metadatas, "");
-  }, []);
-
   return (
     <div className={styles.container}>
       <Head>

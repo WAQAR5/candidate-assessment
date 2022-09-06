@@ -76,11 +76,6 @@ const NftList = () => {
   const getNftData = async () => {
     try {
       const response: any[] = await getAllNfts();
-
-      console.log(
-        "🚀 ~ file: NftList.tsx ~ line 79 ~ getNftData ~ response",
-        response
-      );
       setNfts(response);
     } catch (err) {
       toast.error("something went wrong while getting nfts. Please try again.");

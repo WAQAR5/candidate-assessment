@@ -10,23 +10,12 @@ const RegistrationForm = () => {
   const [nftMint, setNftMint] = useState("");
 
   const account = useAccount();
-  console.log("account----------------", account);
-
-  useEffect(() => {
-    console.log("wertyuioiutrertyiopoiuytrewer");
-  }, []);
   const handleGetImage = async (e: any) => {
-    debugger;
-    console.log("eeeeeeeeeeeeeee", e.target.files[0]);
-
     let name = e.target.files[0].name;
     let file = e.target.files[0];
     const response = await store(name, file);
     let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
-    console.log("url,,,,,", url);
-
     setNftImage(url);
-    // console.log("response", response.cid.toString());
   };
   const SignUpFormik = useFormik({
     initialValues: {
@@ -38,7 +27,6 @@ const RegistrationForm = () => {
     // validationSchema: SignUpSchema,
     onSubmit: async (values, onSubmitProps) => {
       try {
-        console.log(values, "Values____");
         const data = {
           name: values.name,
           description: values.description,
@@ -50,7 +38,6 @@ const RegistrationForm = () => {
         const response = await store(values.name, JSON.stringify(data));
         let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
         const mint = await mintNft(account.address, url);
-        console.log(mint, "data-------------");
 
         return;
         // await Register(data);
