@@ -3,10 +3,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./registraion.module.scss";
-import { useFormik } from "formik";
 import { SignUpSchema } from "./RegistraionSchema";
-import { toast } from "react-toastify";
-// import { Register } from "../../services/auth.services";
 import Router from "next/router";
 import { store } from "../../services/ipfs.service";
 import { Head } from "next/document";
@@ -55,6 +52,7 @@ const RegistrationForm = () => {
       }
     },
   });
+
   return (
     <>
       {/* <Head>

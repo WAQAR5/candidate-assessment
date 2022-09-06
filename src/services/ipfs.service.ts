@@ -1,6 +1,6 @@
 import { create } from "ipfs-core";
 
-const store = async (name, content) => {
+const store = async (name: string, content: any) => {
   let ipfs;
   if (!ipfs) {
     ipfs = await create({
