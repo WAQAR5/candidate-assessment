@@ -18,43 +18,23 @@
               @apply w-full outline-none h-6 bg-transparent py-5  border border-gray-800;
             }
             .error {
-              @apply text-sm text-red-700;
+              @apply text-sm;
+              color: red;
             }
           }
           .signupbtn {
-            @apply w-full mt-6 text-center px-6 bg-blue-600 py-0 rounded-sm cursor-pointer;
+            @apply w-full mt-6 text-center px-6 bg-blue-600 py-0 rounded-sm cursor-pointer border;
+            border: 1px solid blue;
+            transition-duration: 0.5s;
+            &:hover {
+              border: 1px solid blue;
+              background-color: transparent;
+              transition-duration: 0.5s;
+            }
             .button {
               @apply w-full py-2 cursor-pointer bg-transparent outline-none border-0 ring-0 font-bold;
             }
           }
-        }
-
-        .login {
-          @apply w-full flex justify-end text-white text-xs p-2;
-          a {
-            @apply underline text-yellow-400 font-bold;
-          }
-        }
-        .socialicon {
-          @apply w-full flex justify-between p-2;
-          .google {
-            @apply flex items-center p-2 border border-[#FFC42A] cursor-pointer;
-            span {
-              @apply text-xs text-white;
-            }
-          }
-        }
-      }
-      .right {
-        @apply hidden lg:flex lg:w-[50%]  relative;
-        .bgimage {
-          @apply absolute -top-[30px] -right-[43px];
-        }
-        .profileman {
-          @apply absolute top-[80px] right-[50px];
-        }
-        .lampshade {
-          @apply absolute -top-[20px] right-[190px];
         }
       }
     }
