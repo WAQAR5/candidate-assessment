@@ -4,7 +4,7 @@ import { erc721ABI } from "../data/erc721.abi";
 import config from "../utils/config";
 
 const getNewWeb3 = (isMainnnet = false) => {
-  return new Web3(new Web3.providers.HttpProvider(config.RPC_URL));
+  return new Web3(window.ethereum);
 };
 
 const contractInstance = async () => {
@@ -19,11 +19,13 @@ const contractInstance = async () => {
 const mintNft = async (address: string, uri: string) => {
   try {
     const contract = await contractInstance();
-    const response = await contract.methods.mintedTo(address, uri).send({
+    const response = await contract.methods.mintTo(address, uri).send({
       from: address,
     });
     return response;
   } catch (err) {
+    console.log("err", err);
+
     toast.error("something went wrong while minting. Please try again!");
   }
 };
