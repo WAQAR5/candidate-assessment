@@ -3,27 +3,28 @@
   .container {
     @apply w-full flex items-center justify-center h-screen;
     .signup {
-      @apply sm:w-full md:mx-4 lg:w-[700px] flex flex-col justify-center lg:flex-row border bg-[#2a3d39] p-4 rounded-2xl px-5 overflow-hidden;
+      @apply sm:w-full md:mx-4 shadow-md lg:w-[700px] flex flex-col justify-center lg:flex-row p-4 rounded-2xl px-5 overflow-hidden;
+      border: 1px solid black;
       .left {
         @apply w-full lg:w-[45%];
         .heading {
-          @apply text-center font-bold text-sm lg:text-2xl text-white py-3;
+          @apply text-center font-bold text-sm lg:text-2xl py-3;
         }
         .formsection {
-          @apply w-full px-2 flex flex-col items-center gap-y-4;
+          @apply w-full px-2 flex flex-col items-center gap-y-7;
           .inputdiv {
             @apply w-full h-10 flex flex-col gap-y-1;
             input {
-              @apply w-full outline-none h-6 bg-transparent py-5 text-white border-b border-[#FFC42A];
+              @apply w-full outline-none h-6 bg-transparent py-5  border border-gray-800;
             }
             .error {
-              @apply text-sm text-red-300;
+              @apply text-sm text-red-700;
             }
           }
           .signupbtn {
-            @apply w-full mt-6 text-center px-6 bg-[#FFC42A] py-0 rounded-sm cursor-pointer;
+            @apply w-full mt-6 text-center px-6 bg-blue-600 py-0 rounded-sm cursor-pointer;
             .button {
-              @apply w-full py-1 cursor-pointer bg-transparent outline-none border-0 ring-0 font-bold text-[#00523F];
+              @apply w-full py-2 cursor-pointer bg-transparent outline-none border-0 ring-0 font-bold;
             }
           }
         }
