@@ -1,10 +1,26 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useEffect } from "react";
 import styles from "../../styles/Home.module.css";
+import { mintNft } from "../services/contract.service";
+import { mintNftsUsingThirdWeb } from "../services/signature-drop.service";
 import Registration from "./registration";
 
 const Home: NextPage = () => {
+  const metadatas = [
+    {
+      name: "Cool NFT",
+      description: "This is a cool NFT",
+      image: "https://www.google.com", // This can be an image url or file
+    },
+  ];
+
+  useEffect(() => {
+    console.log("hello there");
+    mintNft(metadatas);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
