@@ -25,8 +25,6 @@ const mintNft = async (address: string, uri: string) => {
     });
     return response;
   } catch (err) {
-    console.log("err", err);
-
     toast.error("something went wrong while minting. Please try again!");
   }
 };

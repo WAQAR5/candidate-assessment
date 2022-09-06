@@ -5,28 +5,18 @@ import { mintNft } from "../../services/contract.service";
 import { store } from "../../services/ipfs.service";
 import styles from "./registration.module.scss";
 import { useAccount } from "wagmi";
+import { SignUpSchema } from "./RegistraionSchema";
 const RegistrationForm = () => {
   const [nftImage, setNftImage] = useState("");
   const [nftMint, setNftMint] = useState("");
 
   const account = useAccount();
-  console.log("account----------------", account);
-
-  useEffect(() => {
-    console.log("wertyuioiutrertyiopoiuytrewer");
-  }, []);
   const handleGetImage = async (e: any) => {
-    debugger;
-    console.log("eeeeeeeeeeeeeee", e.target.files[0]);
-
     let name = e.target.files[0].name;
     let file = e.target.files[0];
     const response = await store(name, file);
     let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
-    console.log("url,,,,,", url);
-
     setNftImage(url);
-    // console.log("response", response.cid.toString());
   };
   const SignUpFormik = useFormik({
     initialValues: {
@@ -35,10 +25,9 @@ const RegistrationForm = () => {
       quantity: "",
       price: "",
     },
-    // validationSchema: SignUpSchema,
+    validationSchema: SignUpSchema,
     onSubmit: async (values, onSubmitProps) => {
       try {
-        console.log(values, "Values____");
         const data = {
           name: values.name,
           description: values.description,
@@ -50,7 +39,6 @@ const RegistrationForm = () => {
         const response = await store(values.name, JSON.stringify(data));
         let url = `https://gateway.pinata.cloud/ipfs/${response.cid.toString()}`;
         const mint = await mintNft(account.address, url);
-        console.log(mint, "data-------------");
 
         return;
         // await Register(data);
@@ -74,7 +62,7 @@ const RegistrationForm = () => {
         <div className={styles.container}>
           <div className={styles.signup}>
             <div className={styles.left}>
-              <div className={styles.heading}>Register Now !</div>
+              <div className={styles.heading}>Mint Now !</div>
               <form
                 className={styles.formsection}
                 onSubmit={SignUpFormik.handleSubmit}
@@ -85,11 +73,11 @@ const RegistrationForm = () => {
                     placeholder="Name *"
                     {...SignUpFormik.getFieldProps("name")}
                   />
-                  {/* {SignUpFormik.touched.name && SignUpFormik.errors.name ? (
+                  {SignUpFormik.touched.name && SignUpFormik.errors.name ? (
                     <div className={styles.error}>
                       {SignUpFormik.errors.name}
                     </div>
-                  ) : null} */}
+                  ) : null}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -97,11 +85,12 @@ const RegistrationForm = () => {
                     placeholder="Description *"
                     {...SignUpFormik.getFieldProps("description")}
                   />
-                  {/* {SignUpFormik.touched.email && SignUpFormik.errors.email ? (
+                  {SignUpFormik.touched.description &&
+                  SignUpFormik.errors.description ? (
                     <div className={styles.error}>
-                      {SignUpFormik.errors.email}
+                      {SignUpFormik.errors.description}
                     </div>
-                  ) : null} */}
+                  ) : null}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -109,12 +98,12 @@ const RegistrationForm = () => {
                     placeholder="Quantity *"
                     {...SignUpFormik.getFieldProps("quantity")}
                   />
-                  {/* {SignUpFormik.touched.password &&
-                  SignUpFormik.errors.password ? (
+                  {SignUpFormik.touched.quantity &&
+                  SignUpFormik.errors.quantity ? (
                     <div className={styles.error}>
-                      {SignUpFormik.errors.password}
+                      {SignUpFormik.errors.quantity}
                     </div>
-                  ) : null} */}
+                  ) : null}
                 </div>
                 <div className={styles.inputdiv}>
                   <input
@@ -122,12 +111,11 @@ const RegistrationForm = () => {
                     placeholder="Price"
                     {...SignUpFormik.getFieldProps("price")}
                   />
-                  {/* {SignUpFormik.touched.confirmpassword &&
-                  SignUpFormik.errors.confirmpassword ? (
+                  {SignUpFormik.touched.price && SignUpFormik.errors.price ? (
                     <div className={styles.error}>
-                      {SignUpFormik.errors.confirmpassword}
+                      {SignUpFormik.errors.price}
                     </div>
-                  ) : null} */}
+                  ) : null}
                 </div>
                 <div className={styles.inputdiv}>
                   <input type="file" onChange={(e) => handleGetImage(e)} />

@@ -2,9 +2,6 @@ import { create } from "ipfs-core";
 import { toast } from "react-toastify";
 
 const store = async (name: string, content: any) => {
-  console.log("name---- in store", name);
-  console.log("content---- in store", content);
-
   let ipfs;
   if (!ipfs) {
     ipfs = await create({
