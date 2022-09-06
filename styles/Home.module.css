@@ -12,6 +12,21 @@
   align-items: center;
 }
 
+.details {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 5px 5px;
+}
+.button {
+  padding: 9px 10px;
+  border-radius: 5px;
+  background-color: #0d76fc;
+  color: #eaeaea;
+  border: none;
+  cursor: pointer;
+}
+
 .footer {
   display: flex;
   flex: 1;

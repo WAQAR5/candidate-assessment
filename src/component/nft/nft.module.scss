@@ -17,7 +17,7 @@
     .details {
       @apply w-full flex justify-end my-3 -mx-1;
       button {
-        @apply text-sm border-0 px-5 text-white py-2 rounded-md bg-blue-500;
+        @apply cursor-pointer  text-sm border-0 px-5 text-white py-2 rounded-md bg-blue-500;
       }
     }
   }

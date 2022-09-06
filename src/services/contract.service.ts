@@ -28,6 +28,10 @@ const mintNft = async (address: string, uri: string) => {
   }
 };
 
+// const getTrxDetails(){
+//   const web3=
+// }
+
 const getUserNfts = async (address: string) => {
   const contract = await contractInstance();
   const numUserNfts = await contract.methods.balanceOf(address).call();
