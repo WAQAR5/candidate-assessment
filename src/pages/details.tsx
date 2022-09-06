@@ -1,13 +1,7 @@
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 import styles from "../../styles/Home.module.css";
 import NftList from "../component/nft/NftList";
-import { mintNft } from "../services/contract.service";
-// import { mintNft } from "../services/contract.service";
-import { mintNftsUsingThirdWeb } from "../services/signature-drop.service";
-import Registration from "./registration";
 
 const Details: NextPage = () => {
   return (
@@ -20,8 +14,10 @@ const Details: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <main className={styles.main}>Detils</main>
+      <div className={styles.header}>Your Nfts</div>
+      <main className={styles.main}>
+        <NftList type="user" />
+      </main>
     </div>
   );
 };

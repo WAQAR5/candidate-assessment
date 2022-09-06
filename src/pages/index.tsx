@@ -34,7 +34,7 @@ const Home: NextPage = () => {
         </div>
       </div>
       <main className={styles.main}>
-        <NftList />
+        <NftList type="home" />
         {/* <Registration /> */}
       </main>
     </div>

@@ -2,99 +2,33 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAccount } from "wagmi";
-import { getAllNfts } from "../../services/contract.service";
+import { getAllNfts, getUserNfts } from "../../services/contract.service";
 import styles from "./nft.module.scss";
 
-const NftList = () => {
-  const [nfts, setNfts] = useState<any[]>([]);
-  console.log("🚀 ~ file: NftList.tsx ~ line 10 ~ NftList ~ nfts", nfts);
-  const router = useRouter();
+interface INftList {
+  type: "home" | "user";
+}
 
-  let nftArray = [
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-    {
-      image: "https://news.artnet.com/app/news-upload/2022/01/TK-Bored-Ape.jpg",
-      title: "Price",
-      price: 1111,
-    },
-  ];
+const NftList = (props: INftList) => {
+  const [nfts, setNfts] = useState<any[]>([]);
+
+  const router = useRouter();
+  const account: any = useAccount();
 
   const getNftData = async () => {
-    console.log("safghsf");
-
     try {
-      const response: any[] = await getAllNfts();
+      let response: any;
+      if (props.type == "home") {
+        response = await getAllNfts();
+      } else if (props.type == "user") {
+        response = await getUserNfts(account.address);
+      }
 
       setNfts(response);
     } catch (err) {
       toast.error("something went wrong while getting nfts. Please try again.");
     }
   };
-
-  const account = useAccount();
-  console.log(
-    "🚀 ~ file: NftList.tsx ~ line 95 ~ NftList ~ account",
-    account.address
-  );
 
   const handleDetail = () => {
     router.push("/details");

@@ -32,12 +32,19 @@ const mintNft = async (address: string, uri: string) => {
 
 const getUserNfts = async (address: string) => {
   const contract = await contractInstance();
-  const numUserNfts = await contract.methods.balanceOf(address).call();
+  const numUserNfts = await contract.methods.totalSupply().call();
+
   let nfts = [];
   for (let i = 0; i < numUserNfts; i++) {
-    let nft = await contract.methods.tokenOfOwnerByIndex(address, i).call();
-    nfts.push(nft);
+    let owner = await contract.methods.ownerOf(i).call();
+    if (owner == address) {
+      let nft = await contract.methods.tokenURI(i).call();
+      const details = await axios.get(nft);
+
+      nfts.push(details.data);
+    }
   }
+
   return nfts;
 };
 

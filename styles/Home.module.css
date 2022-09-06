@@ -111,6 +111,13 @@
   line-height: 1.5;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
