@@ -1,0 +1,61 @@
+.wrapper {
+  @apply w-full min-h-screen;
+  .container {
+    @apply w-full flex items-center justify-center h-screen;
+    .signup {
+      @apply sm:w-full md:mx-4 lg:w-[700px] flex flex-col justify-center lg:flex-row border bg-[#2a3d39] p-4 rounded-2xl px-5 overflow-hidden;
+      .left {
+        @apply w-full lg:w-[45%];
+        .heading {
+          @apply text-center font-bold text-sm lg:text-2xl text-white py-3;
+        }
+        .formsection {
+          @apply w-full px-2 flex flex-col items-center gap-y-4;
+          .inputdiv {
+            @apply w-full h-10 flex flex-col gap-y-1;
+            input {
+              @apply w-full outline-none h-6 bg-transparent py-5 text-white border-b border-[#FFC42A];
+            }
+            .error {
+              @apply text-sm text-red-300;
+            }
+          }
+          .signupbtn {
+            @apply w-full mt-6 text-center px-6 bg-[#FFC42A] py-0 rounded-sm cursor-pointer;
+            button {
+              @apply py-1 font-bold text-[#00523F];
+            }
+          }
+        }
+
+        .login {
+          @apply w-full flex justify-end text-white text-xs p-2;
+          a {
+            @apply underline text-yellow-400 font-bold;
+          }
+        }
+        .socialicon {
+          @apply w-full flex justify-between p-2;
+          .google {
+            @apply flex items-center p-2 border border-[#FFC42A] cursor-pointer;
+            span {
+              @apply text-xs text-white;
+            }
+          }
+        }
+      }
+      .right {
+        @apply hidden lg:flex lg:w-[50%]  relative;
+        .bgimage {
+          @apply absolute -top-[30px] -right-[43px];
+        }
+        .profileman {
+          @apply absolute top-[80px] right-[50px];
+        }
+        .lampshade {
+          @apply absolute -top-[20px] right-[190px];
+        }
+      }
+    }
+  }
+}
