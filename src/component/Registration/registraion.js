@@ -101,9 +101,9 @@ const RegistrationForm = () => {
                     </div>
                   ) : null} */}
                 </div>
-                {/* <div className={styles.inputdiv}>
-                  <input type="text" placeholder="Price" />
-                </div> */}
+                <div className={styles.inputdiv}>
+                  <input type="file" />
+                </div>
 
                 <div className={styles.signupbtn}>
                   <button type="submit">Register</button>
